@@ -6,7 +6,7 @@ const connectDB = async () => {
     useUnifiedTopology: true,
   });
 
-  console.log(`MondoDB Connect: ${conn.connection.host}`);
+  console.log(`MondoDB Connect: ${conn.connection.host}\n`);
 };
 
 module.exports = connectDB;
