@@ -1,5 +1,4 @@
 const express = require("express");
-const { protect, authorize } = require("../middleware/auth");
 const {
   getHospitals,
   getHospital,
@@ -7,7 +6,12 @@ const {
   updateHospital,
   deleteHospital,
 } = require("../controllers/hospitals");
+const { protect, authorize } = require("../middleware/auth");
+const appointmentRouter = require("./appointments");
+
 const router = express.Router();
+
+router.use("/:hospitalId/appointments", appointmentRouter);
 
 router
   .route("/")

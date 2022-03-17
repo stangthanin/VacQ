@@ -21,9 +21,10 @@ exports.protect = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log(decoded);
-
     req.user = await User.findById(decoded.id);
+
+    console.log("Request by", req.user.name, decoded);
+
     next();
   } catch (err) {
     console.log(err.stack);
@@ -43,6 +44,7 @@ exports.authorize = (...roles) => {
         message: `User role ${req.user.role} is not authorized to access this route`,
       });
     }
+
     next();
   };
 };
